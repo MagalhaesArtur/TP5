@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "abb.h": "c",
+    "stdio.h": "c",
+    "string.h": "c",
+    "MACAQUISSE.C": "cpp",
+    "stdlib.h": "c",
+    "NAOABRA.C": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "Disabled"
+}
