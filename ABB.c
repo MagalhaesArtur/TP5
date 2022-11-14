@@ -9,6 +9,8 @@ struct node {
   char *conteudo;
   No *esq;
   No *dir;
+  No *pai;
+
 };
 typedef struct node No;
 
@@ -29,6 +31,7 @@ No *abb_cria_no(int chave, char *conteudo) {
   novoNo->conteudo = *conteudo;
   novoNo->dir = NULL;
   novoNo->esq = NULL;
+  novoNo->pai = NULL;
   return novoNo;
   
 }
@@ -36,7 +39,13 @@ No *abb_cria_no(int chave, char *conteudo) {
 /* Libera a memória de um nó e toda as suas sub-árvores. Retorna 1 se for
  * possivel fazer a liberação ou 0 caso o nó seja NULL. */
 int abb_libera_no(No *no) {
-  -2;
+  if(no != NULL){
+    abb_libera_no(no->esq);
+    abb_remove_no(no->pai,no->chave);
+    abb_libera_no(no->dir);
+    return 1;
+  }
+  return 0;
 }
 
 /* Retorna a chave do nó ou -1 caso o nó seja NULL.  */
@@ -76,6 +85,7 @@ No *abb_insere_no(No *raiz, No *no) {
 
 void inserirEsquerda(No* raiz,No* no){
       if(raiz->esq == NULL){
+        no->pai = raiz;
         raiz->esq = no;
       }else{
          if(no->chave < raiz->esq->chave){
@@ -88,6 +98,7 @@ void inserirEsquerda(No* raiz,No* no){
 
 void inserirDireita(No* raiz,No* no){
       if(raiz->dir == NULL){
+        no->pai = raiz;
         raiz->dir = no;
       }else{
           if(no->chave > raiz->dir->chave){
@@ -103,12 +114,14 @@ void imprimir(No *raiz){
 
   if(raiz != NULL){
 
-    imprimir(raiz->esq);
     printf("%c\n",raiz->conteudo);
+    imprimir(raiz->esq);
 
     imprimir(raiz->dir);
 
   }
+   
+
 }
 
 /* Procura o nó pela chave. Retorna o nó caso a busca obtenha sucesso ou NULL
@@ -192,19 +205,34 @@ int abb_altura(No *raiz) {
 }
 
 /* Retorna o número de nós da árvore ou -1 caso araiz seja NULL. */
-int aux = 0;
+
+
 int abb_numero(No *raiz) {
- 
+  int *aux;
+  int r = 0;
+  aux = &r;
+
   if(raiz == NULL){
     return -1;
-  }else{
-    abb_numero(raiz->esq);
-    aux++;
-    abb_numero(raiz->dir);
-
   }
-  return aux; 
 
+  abb_numero_aux(raiz,aux);
+  printf("%i",r);
+
+
+}
+
+int abb_numero_aux(No *raiz, int* num){
+  if(raiz != NULL){
+
+    abb_numero_aux(raiz->esq,num);
+    *num = *num + 1;
+
+    abb_numero_aux(raiz->dir,num);
+  }
+  
+
+  
 
 }
 
@@ -337,7 +365,7 @@ if(no->conteudo ==   (char*) 'a'){
     }
   }
 
-  if(no->conteudo ==  (char*)'b'){
+  if(no->conteudo ==  (char*) 'b'){
     for(int i = 0; i< strlen(a); i++){
       x[i] = b[i];
     }

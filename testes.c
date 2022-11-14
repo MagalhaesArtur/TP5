@@ -23,20 +23,16 @@ int main(void) {
   abb_insere_no(No2,No3);
 
 
+  // No* no;
+  // no = abb_busca_no(No2, 66);
 
-  char *teste = abb_pos_ordem(No2);
-
-    printf("%s",teste);
-  
-   
-  
-  
-
-  // abb_remove_no(No2,300);
-
-
+  // imprimir(no);
+  abb_numero(No2);
+  abb_libera_no(No6);
+  abb_numero(No2);
 
   // imprimir(No2);
+
 
 
   return 0;

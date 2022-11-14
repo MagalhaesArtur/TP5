@@ -42,6 +42,8 @@ int abb_altura(No *raiz);
 
 /* Retorna o número de nós da árvore ou -1 caso araiz seja NULL. */
 int abb_numero(No *raiz);
+int abb_numero_aux(No *raiz, int *num);
+
 
 
 char *abb_pre_ordem_aux(No *no,char* texto);
