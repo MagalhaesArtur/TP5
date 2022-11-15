@@ -26,12 +26,12 @@ int main(void) {
   // No* no;
   // no = abb_busca_no(No2, 66);
 
-  // imprimir(no);
-  abb_numero(No2);
+  imprimir(No2);
+  // abb_numero(No2);
   abb_libera_no(No6);
-  abb_numero(No2);
+  // abb_numero(No2);
 
-  // imprimir(No2);
+  imprimir(No2);
 
 
 

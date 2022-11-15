@@ -114,8 +114,8 @@ void imprimir(No *raiz){
 
   if(raiz != NULL){
 
-    printf("%c\n",raiz->conteudo);
     imprimir(raiz->esq);
+    printf("%i\n",raiz->chave);
 
     imprimir(raiz->dir);
 
